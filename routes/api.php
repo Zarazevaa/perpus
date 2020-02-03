@@ -18,7 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('register', 'PetugasController@register');
 Route::post('login', 'PetugasController@login');
-Route::post('/simpan_peminjaman', 'PeminjamanController@store');
 Route::post('/simpan_buku','bukucontroller@store')->middleware('jwt.verify');
 Route::put('/ubah_buku/{id}','bukucontroller@update')->middleware('jwt.verify');
 Route::delete('/hapus_buku/{id}','bukucontroller@destroy')->middleware('jwt.verify');
@@ -28,3 +27,14 @@ Route::post('/simpan_anggota','anggotacontroller@store')->middleware('jwt.verify
 Route::put('/ubah_anggota/{id}','anggotacontroller@update')->middleware('jwt.verify');
 Route::delete('/hapus_anggota/{id}','anggotacontroller@destroy')->middleware('jwt.verify');
 Route::get('/tampil_anggota','anggotacontroller@tampil_anggota')->middleware('jwt.verify');
+//
+// Route::get('index','PeminjamanController@index')->middleware('jwt.verify');
+Route::post('simpan','PeminjamanController@store')->middleware('jwt.verify');
+Route::put('/ubah/{id}','PeminjamanController@update')->middleware('jwt.verify');
+Route::delete('hapus/{id}','PeminjamanController@destroy')->middleware('jwt.verify');
+Route::get("tampil","PeminjamanController@tampil_pinjam")->middleware('jwt.verify');
+
+Route::post('/simpan_detail','PeminjamanController@simpan')->middleware('jwt.verify');
+Route::put('/ubah_detail/{id}','PeminjamanController@ubah')->middleware('jwt.verify');
+Route::delete('/hapus_detail/{id}','PeminjamanController@hapus')->middleware('jwt.verify');
+Route::get('/tampil_detail','PeminjamanController@index')->middleware('jwt.verify');
